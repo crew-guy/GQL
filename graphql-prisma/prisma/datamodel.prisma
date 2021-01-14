@@ -1,0 +1,22 @@
+type User {
+	id: ID! @id
+	name: String!
+	email: String!
+	reviews: [Review!]!
+}
+
+type Review {
+	id: ID! @id
+	upvotes: Int
+	title: String!
+	body: String!
+	author: User!
+}
+
+type Comment {
+	id: ID! @id
+	title: String!
+	body: String!
+	author: User!
+	review: Review!
+}

@@ -1,0 +1,151 @@
+type Query {
+	greeting(name: String, position: String): String!
+
+	prodID: ID!
+	name: String!
+	price: Float!
+	isAvailable: Boolean!
+	stockUnits: Int!
+
+	availableDishes(specific: String): [Prod!]!
+
+	review: Review!
+	reviews(specific: String): [Review]!
+
+	comment: Comment
+	comments(specific: String): [Comment]
+
+	bill(prices: [Float]): Float!
+
+	users(name: String, email: String, age: Int): [User]!
+}
+
+type User {
+	id: ID!
+	name: String!
+	age: Int
+	email: String!
+	posts: [Review]
+	comments: [Comment]
+	favouriteProd: Prod
+}
+
+type Review {
+	title: String!
+	body: String!
+	id: ID!
+	upvotes: Int
+	parentProdOfRev: Prod!
+	commentsChildOfRev: [Comment]
+	parentUserOfRev: User!
+	isPublished: Boolean!
+}
+
+type Prod {
+	prodID: ID!
+	name: String!
+	price: Float!
+	isAvailable: Boolean!
+	stockUnits: Int!
+	prodReviews: [Review]
+	prodComments: [Comment]
+	frequentUsers: [User]
+}
+
+type Comment {
+	title: String!
+	body: String!
+	commId: ID!
+	parentRevOfComm: Review!
+	parentProdOfComm: Prod!
+	parentUserOfComm: User!
+}
+
+type Mutation {
+	createUser(data: CreateUserInput): User
+	createReview(data: CreateReviewInput): Review
+	createComment(data: CreateCommentInput): Comment
+	deleteUser(id: ID!): User!
+	deleteReview(id: ID!): Review!
+	deleteComment(id: ID!): Comment!
+	deleteProduct(id: ID!): Prod!
+	updateUser(id: ID!, data: UpdateUserInput): User!
+	updateReview(id: ID!, data: UpdateReviewInput): Review!
+	updateComment(id: ID!, data: UpdateCommentInput): Comment!
+	updateProd(id: ID!, data: UpdateProdInput): Prod!
+}
+
+input UpdateProdInput {
+	name: String!
+	isAvailable: Boolean!
+	price: Float
+	stockUnits: Int
+}
+
+input UpdateReviewInput {
+	title: String
+	body: String
+	upvotes: Int
+	isPublished: Boolean!
+	parentProdOfRev: ID
+	parentUserOfRev: ID
+}
+
+input UpdateCommentInput {
+	title: String
+	body: String
+	parentRevOfComm: ID
+	parentProdOfComm: ID
+	parentUserOfComm: ID
+}
+
+input UpdateUserInput {
+	name: String
+	age: Int
+	email: String
+}
+
+input CreateUserInput {
+	name: String!
+	email: String!
+	age: Int
+}
+
+input CreateReviewInput {
+	title: String!
+	body: String!
+	upvotes: Int
+	isPublished: Boolean!
+	parentProdOfRev: ID!
+	parentUserOfRev: ID!
+}
+
+input CreateCommentInput {
+	title: String!
+	body: String!
+	parentProdOfComm: ID!
+	parentRevOfComm: ID!
+	parentUserOfComm: ID!
+}
+
+type Subscription {
+	count: Int!
+	comment(parentRevOfComm: ID!): CommentSubscriptionPayload!
+ 	review: ReviewSubscriptionPayload!
+}
+
+enum MutationType {
+	CREATED
+	UPDATED
+	DELETED
+}
+
+type ReviewSubscriptionPayload {
+	mutation: MutationType!
+	data: Review
+}
+
+type CommentSubscriptionPayload {
+	mutation: MutationType!
+	data: Comment
+}
