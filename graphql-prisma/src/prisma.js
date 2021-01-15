@@ -7,7 +7,7 @@ const prisma = new Prisma({
 
 
 
-prisma.query.users(null,'{ id name review { name } }')
+prisma.query.users(null,'{ id name reviews {id title } }')
     .then(data=> console.log(JSON.stringify(data, undefined,2)))
     .catch(err => console.log(err.message))
 
@@ -15,21 +15,30 @@ prisma.query.comments(null, '{ id title body author{ id name} }')
     .then(data=> console.log(JSON.stringify(data, undefined,2)))
     .catch(err => console.log(err.message))
 
-const createCommentString = `data:{
-    id:5,
-    title:"The noodles are straight from heaven",
-    body:"The sauce and vegetables are cooked to perfection, taking a meal there to paradise",
+// prisma.query.users(null, '{ id name posts { id title } }').then((data) => {
+//     console.log(JSON.stringify(data, undefined, 2))
+// })
+
+// prisma.query.comments(null, '{ id text author { id name } }').then((data) => {
+//     console.log(JSON.stringify(data, undefined, 2))
+// })
+
+prisma.mutation.createComment(
+  {data:{
+    id:6,
+    title:"The noodles are gold af",
+    body:"Bole toh maza hi aa gaya bro",
     author:{
       connect:{
-        id:4
+        id:5
       }
-    }
+    },
     review:{
       connect:{
         id:2
       }
     }
-}`
-prisma.mutation.createComment(createCommentString,'id title body')
+}}
+  ,'{id title body}')
     .then(data => console.log(data))
-    .catch(err => console.log(err.message); )
+    .catch(err => console.log(err.message))

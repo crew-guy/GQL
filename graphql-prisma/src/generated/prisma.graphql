@@ -1,249 +1,357 @@
 type AggregateComment {
-  count: Int!
+	count: Int!
 }
 
 type AggregateReview {
-  count: Int!
+	count: Int!
 }
 
 type AggregateUser {
-  count: Int!
+	count: Int!
 }
 
 type BatchPayload {
-  """The number of nodes that have been affected by the Batch operation."""
-  count: Long!
+	"""
+	The number of nodes that have been affected by the Batch operation.
+	"""
+	count: Long!
 }
 
 type Comment implements Node {
-  id: ID!
-  title: String!
-  body: String!
+	id: ID!
+	title: String!
+	body: String!
 }
 
-"""A connection to a list of items."""
+"""
+A connection to a list of items.
+"""
 type CommentConnection {
-  """Information to aid in pagination."""
-  pageInfo: PageInfo!
+	"""
+	Information to aid in pagination.
+	"""
+	pageInfo: PageInfo!
 
-  """A list of edges."""
-  edges: [CommentEdge]!
-  aggregate: AggregateComment!
+	"""
+	A list of edges.
+	"""
+	edges: [CommentEdge]!
+	aggregate: AggregateComment!
 }
 
 input CommentCreateInput {
-  id: ID
-  title: String!
-  body: String!
+	id: ID
+	title: String!
+	body: String!
 }
 
-"""An edge in a connection."""
+"""
+An edge in a connection.
+"""
 type CommentEdge {
-  """The item at the end of the edge."""
-  node: Comment!
+	"""
+	The item at the end of the edge.
+	"""
+	node: Comment!
 
-  """A cursor for use in pagination."""
-  cursor: String!
+	"""
+	A cursor for use in pagination.
+	"""
+	cursor: String!
 }
 
 enum CommentOrderByInput {
-  id_ASC
-  id_DESC
-  title_ASC
-  title_DESC
-  body_ASC
-  body_DESC
+	id_ASC
+	id_DESC
+	title_ASC
+	title_DESC
+	body_ASC
+	body_DESC
 }
 
 type CommentPreviousValues {
-  id: ID!
-  title: String!
-  body: String!
+	id: ID!
+	title: String!
+	body: String!
 }
 
 type CommentSubscriptionPayload {
-  mutation: MutationType!
-  node: Comment
-  updatedFields: [String!]
-  previousValues: CommentPreviousValues
+	mutation: MutationType!
+	node: Comment
+	updatedFields: [String!]
+	previousValues: CommentPreviousValues
 }
 
 input CommentSubscriptionWhereInput {
-  """Logical AND on all given filters."""
-  AND: [CommentSubscriptionWhereInput!]
+	"""
+	Logical AND on all given filters.
+	"""
+	AND: [CommentSubscriptionWhereInput!]
 
-  """Logical OR on all given filters."""
-  OR: [CommentSubscriptionWhereInput!]
+	"""
+	Logical OR on all given filters.
+	"""
+	OR: [CommentSubscriptionWhereInput!]
 
-  """Logical NOT on all given filters combined by AND."""
-  NOT: [CommentSubscriptionWhereInput!]
+	"""
+	Logical NOT on all given filters combined by AND.
+	"""
+	NOT: [CommentSubscriptionWhereInput!]
 
-  """The subscription event gets dispatched when it's listed in mutation_in"""
-  mutation_in: [MutationType!]
+	"""
+	The subscription event gets dispatched when it's listed in mutation_in
+	"""
+	mutation_in: [MutationType!]
 
-  """
-  The subscription event gets only dispatched when one of the updated fields names is included in this list
-  """
-  updatedFields_contains: String
+	"""
+	The subscription event gets only dispatched when one of the updated fields names is included in this list
+	"""
+	updatedFields_contains: String
 
-  """
-  The subscription event gets only dispatched when all of the field names included in this list have been updated
-  """
-  updatedFields_contains_every: [String!]
+	"""
+	The subscription event gets only dispatched when all of the field names included in this list have been updated
+	"""
+	updatedFields_contains_every: [String!]
 
-  """
-  The subscription event gets only dispatched when some of the field names included in this list have been updated
-  """
-  updatedFields_contains_some: [String!]
-  node: CommentWhereInput
+	"""
+	The subscription event gets only dispatched when some of the field names included in this list have been updated
+	"""
+	updatedFields_contains_some: [String!]
+	node: CommentWhereInput
 }
 
 input CommentUpdateInput {
-  title: String
-  body: String
+	title: String
+	body: String
 }
 
 input CommentUpdateManyMutationInput {
-  title: String
-  body: String
+	title: String
+	body: String
 }
 
 input CommentWhereInput {
-  """Logical AND on all given filters."""
-  AND: [CommentWhereInput!]
+	"""
+	Logical AND on all given filters.
+	"""
+	AND: [CommentWhereInput!]
 
-  """Logical OR on all given filters."""
-  OR: [CommentWhereInput!]
+	"""
+	Logical OR on all given filters.
+	"""
+	OR: [CommentWhereInput!]
 
-  """Logical NOT on all given filters combined by AND."""
-  NOT: [CommentWhereInput!]
-  id: ID
+	"""
+	Logical NOT on all given filters combined by AND.
+	"""
+	NOT: [CommentWhereInput!]
+	id: ID
 
-  """All values that are not equal to given value."""
-  id_not: ID
+	"""
+	All values that are not equal to given value.
+	"""
+	id_not: ID
 
-  """All values that are contained in given list."""
-  id_in: [ID!]
+	"""
+	All values that are contained in given list.
+	"""
+	id_in: [ID!]
 
-  """All values that are not contained in given list."""
-  id_not_in: [ID!]
+	"""
+	All values that are not contained in given list.
+	"""
+	id_not_in: [ID!]
 
-  """All values less than the given value."""
-  id_lt: ID
+	"""
+	All values less than the given value.
+	"""
+	id_lt: ID
 
-  """All values less than or equal the given value."""
-  id_lte: ID
+	"""
+	All values less than or equal the given value.
+	"""
+	id_lte: ID
 
-  """All values greater than the given value."""
-  id_gt: ID
+	"""
+	All values greater than the given value.
+	"""
+	id_gt: ID
 
-  """All values greater than or equal the given value."""
-  id_gte: ID
+	"""
+	All values greater than or equal the given value.
+	"""
+	id_gte: ID
 
-  """All values containing the given string."""
-  id_contains: ID
+	"""
+	All values containing the given string.
+	"""
+	id_contains: ID
 
-  """All values not containing the given string."""
-  id_not_contains: ID
+	"""
+	All values not containing the given string.
+	"""
+	id_not_contains: ID
 
-  """All values starting with the given string."""
-  id_starts_with: ID
+	"""
+	All values starting with the given string.
+	"""
+	id_starts_with: ID
 
-  """All values not starting with the given string."""
-  id_not_starts_with: ID
+	"""
+	All values not starting with the given string.
+	"""
+	id_not_starts_with: ID
 
-  """All values ending with the given string."""
-  id_ends_with: ID
+	"""
+	All values ending with the given string.
+	"""
+	id_ends_with: ID
 
-  """All values not ending with the given string."""
-  id_not_ends_with: ID
-  title: String
+	"""
+	All values not ending with the given string.
+	"""
+	id_not_ends_with: ID
+	title: String
 
-  """All values that are not equal to given value."""
-  title_not: String
+	"""
+	All values that are not equal to given value.
+	"""
+	title_not: String
 
-  """All values that are contained in given list."""
-  title_in: [String!]
+	"""
+	All values that are contained in given list.
+	"""
+	title_in: [String!]
 
-  """All values that are not contained in given list."""
-  title_not_in: [String!]
+	"""
+	All values that are not contained in given list.
+	"""
+	title_not_in: [String!]
 
-  """All values less than the given value."""
-  title_lt: String
+	"""
+	All values less than the given value.
+	"""
+	title_lt: String
 
-  """All values less than or equal the given value."""
-  title_lte: String
+	"""
+	All values less than or equal the given value.
+	"""
+	title_lte: String
 
-  """All values greater than the given value."""
-  title_gt: String
+	"""
+	All values greater than the given value.
+	"""
+	title_gt: String
 
-  """All values greater than or equal the given value."""
-  title_gte: String
+	"""
+	All values greater than or equal the given value.
+	"""
+	title_gte: String
 
-  """All values containing the given string."""
-  title_contains: String
+	"""
+	All values containing the given string.
+	"""
+	title_contains: String
 
-  """All values not containing the given string."""
-  title_not_contains: String
+	"""
+	All values not containing the given string.
+	"""
+	title_not_contains: String
 
-  """All values starting with the given string."""
-  title_starts_with: String
+	"""
+	All values starting with the given string.
+	"""
+	title_starts_with: String
 
-  """All values not starting with the given string."""
-  title_not_starts_with: String
+	"""
+	All values not starting with the given string.
+	"""
+	title_not_starts_with: String
 
-  """All values ending with the given string."""
-  title_ends_with: String
+	"""
+	All values ending with the given string.
+	"""
+	title_ends_with: String
 
-  """All values not ending with the given string."""
-  title_not_ends_with: String
-  body: String
+	"""
+	All values not ending with the given string.
+	"""
+	title_not_ends_with: String
+	body: String
 
-  """All values that are not equal to given value."""
-  body_not: String
+	"""
+	All values that are not equal to given value.
+	"""
+	body_not: String
 
-  """All values that are contained in given list."""
-  body_in: [String!]
+	"""
+	All values that are contained in given list.
+	"""
+	body_in: [String!]
 
-  """All values that are not contained in given list."""
-  body_not_in: [String!]
+	"""
+	All values that are not contained in given list.
+	"""
+	body_not_in: [String!]
 
-  """All values less than the given value."""
-  body_lt: String
+	"""
+	All values less than the given value.
+	"""
+	body_lt: String
 
-  """All values less than or equal the given value."""
-  body_lte: String
+	"""
+	All values less than or equal the given value.
+	"""
+	body_lte: String
 
-  """All values greater than the given value."""
-  body_gt: String
+	"""
+	All values greater than the given value.
+	"""
+	body_gt: String
 
-  """All values greater than or equal the given value."""
-  body_gte: String
+	"""
+	All values greater than or equal the given value.
+	"""
+	body_gte: String
 
-  """All values containing the given string."""
-  body_contains: String
+	"""
+	All values containing the given string.
+	"""
+	body_contains: String
 
-  """All values not containing the given string."""
-  body_not_contains: String
+	"""
+	All values not containing the given string.
+	"""
+	body_not_contains: String
 
-  """All values starting with the given string."""
-  body_starts_with: String
+	"""
+	All values starting with the given string.
+	"""
+	body_starts_with: String
 
-  """All values not starting with the given string."""
-  body_not_starts_with: String
+	"""
+	All values not starting with the given string.
+	"""
+	body_not_starts_with: String
 
-  """All values ending with the given string."""
-  body_ends_with: String
+	"""
+	All values ending with the given string.
+	"""
+	body_ends_with: String
 
-  """All values not ending with the given string."""
-  body_not_ends_with: String
+	"""
+	All values not ending with the given string.
+	"""
+	body_not_ends_with: String
 }
 
 input CommentWhereUniqueInput {
-  id: ID
+	id: ID
 }
 
-"""Raw JSON value"""
+"""
+Raw JSON value
+"""
 scalar Json
 
 """
@@ -253,563 +361,875 @@ Long can represent values between -(2^63) and 2^63 - 1.
 scalar Long
 
 type Mutation {
-  createUser(data: UserCreateInput!): User!
-  createReview(data: ReviewCreateInput!): Review!
-  createComment(data: CommentCreateInput!): Comment!
-  updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
-  updateReview(data: ReviewUpdateInput!, where: ReviewWhereUniqueInput!): Review
-  updateComment(data: CommentUpdateInput!, where: CommentWhereUniqueInput!): Comment
-  deleteUser(where: UserWhereUniqueInput!): User
-  deleteReview(where: ReviewWhereUniqueInput!): Review
-  deleteComment(where: CommentWhereUniqueInput!): Comment
-  upsertUser(where: UserWhereUniqueInput!, create: UserCreateInput!, update: UserUpdateInput!): User!
-  upsertReview(where: ReviewWhereUniqueInput!, create: ReviewCreateInput!, update: ReviewUpdateInput!): Review!
-  upsertComment(where: CommentWhereUniqueInput!, create: CommentCreateInput!, update: CommentUpdateInput!): Comment!
-  updateManyUsers(data: UserUpdateManyMutationInput!, where: UserWhereInput): BatchPayload!
-  updateManyReviews(data: ReviewUpdateManyMutationInput!, where: ReviewWhereInput): BatchPayload!
-  updateManyComments(data: CommentUpdateManyMutationInput!, where: CommentWhereInput): BatchPayload!
-  deleteManyUsers(where: UserWhereInput): BatchPayload!
-  deleteManyReviews(where: ReviewWhereInput): BatchPayload!
-  deleteManyComments(where: CommentWhereInput): BatchPayload!
-  executeRaw(database: PrismaDatabase, query: String!): Json!
+	createUser(data: UserCreateInput!): User!
+	createReview(data: ReviewCreateInput!): Review!
+	createComment(data: CommentCreateInput!): Comment!
+	updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
+	updateReview(data: ReviewUpdateInput!, where: ReviewWhereUniqueInput!): Review
+	updateComment(
+		data: CommentUpdateInput!
+		where: CommentWhereUniqueInput!
+	): Comment
+	deleteUser(where: UserWhereUniqueInput!): User
+	deleteReview(where: ReviewWhereUniqueInput!): Review
+	deleteComment(where: CommentWhereUniqueInput!): Comment
+	upsertUser(
+		where: UserWhereUniqueInput!
+		create: UserCreateInput!
+		update: UserUpdateInput!
+	): User!
+	upsertReview(
+		where: ReviewWhereUniqueInput!
+		create: ReviewCreateInput!
+		update: ReviewUpdateInput!
+	): Review!
+	upsertComment(
+		where: CommentWhereUniqueInput!
+		create: CommentCreateInput!
+		update: CommentUpdateInput!
+	): Comment!
+	updateManyUsers(
+		data: UserUpdateManyMutationInput!
+		where: UserWhereInput
+	): BatchPayload!
+	updateManyReviews(
+		data: ReviewUpdateManyMutationInput!
+		where: ReviewWhereInput
+	): BatchPayload!
+	updateManyComments(
+		data: CommentUpdateManyMutationInput!
+		where: CommentWhereInput
+	): BatchPayload!
+	deleteManyUsers(where: UserWhereInput): BatchPayload!
+	deleteManyReviews(where: ReviewWhereInput): BatchPayload!
+	deleteManyComments(where: CommentWhereInput): BatchPayload!
+	executeRaw(database: PrismaDatabase, query: String!): Json!
 }
 
 enum MutationType {
-  CREATED
-  UPDATED
-  DELETED
+	CREATED
+	UPDATED
+	DELETED
 }
 
-"""An object with an ID"""
+"""
+An object with an ID
+"""
 interface Node {
-  """The id of the object."""
-  id: ID!
+	"""
+	The id of the object.
+	"""
+	id: ID!
 }
 
-"""Information about pagination in a connection."""
+"""
+Information about pagination in a connection.
+"""
 type PageInfo {
-  """When paginating forwards, are there more items?"""
-  hasNextPage: Boolean!
+	"""
+	When paginating forwards, are there more items?
+	"""
+	hasNextPage: Boolean!
 
-  """When paginating backwards, are there more items?"""
-  hasPreviousPage: Boolean!
+	"""
+	When paginating backwards, are there more items?
+	"""
+	hasPreviousPage: Boolean!
 
-  """When paginating backwards, the cursor to continue."""
-  startCursor: String
+	"""
+	When paginating backwards, the cursor to continue.
+	"""
+	startCursor: String
 
-  """When paginating forwards, the cursor to continue."""
-  endCursor: String
+	"""
+	When paginating forwards, the cursor to continue.
+	"""
+	endCursor: String
 }
 
 enum PrismaDatabase {
-  default
+	default
 }
 
 type Query {
-  users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
-  reviews(where: ReviewWhereInput, orderBy: ReviewOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Review]!
-  comments(where: CommentWhereInput, orderBy: CommentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Comment]!
-  user(where: UserWhereUniqueInput!): User
-  review(where: ReviewWhereUniqueInput!): Review
-  comment(where: CommentWhereUniqueInput!): Comment
-  usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
-  reviewsConnection(where: ReviewWhereInput, orderBy: ReviewOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ReviewConnection!
-  commentsConnection(where: CommentWhereInput, orderBy: CommentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): CommentConnection!
+	users(
+		where: UserWhereInput
+		orderBy: UserOrderByInput
+		skip: Int
+		after: String
+		before: String
+		first: Int
+		last: Int
+	): [User]!
+	reviews(
+		where: ReviewWhereInput
+		orderBy: ReviewOrderByInput
+		skip: Int
+		after: String
+		before: String
+		first: Int
+		last: Int
+	): [Review]!
+	comments(
+		where: CommentWhereInput
+		orderBy: CommentOrderByInput
+		skip: Int
+		after: String
+		before: String
+		first: Int
+		last: Int
+	): [Comment]!
+	user(where: UserWhereUniqueInput!): User
+	review(where: ReviewWhereUniqueInput!): Review
+	comment(where: CommentWhereUniqueInput!): Comment
+	usersConnection(
+		where: UserWhereInput
+		orderBy: UserOrderByInput
+		skip: Int
+		after: String
+		before: String
+		first: Int
+		last: Int
+	): UserConnection!
+	reviewsConnection(
+		where: ReviewWhereInput
+		orderBy: ReviewOrderByInput
+		skip: Int
+		after: String
+		before: String
+		first: Int
+		last: Int
+	): ReviewConnection!
+	commentsConnection(
+		where: CommentWhereInput
+		orderBy: CommentOrderByInput
+		skip: Int
+		after: String
+		before: String
+		first: Int
+		last: Int
+	): CommentConnection!
 
-  """Fetches an object given its ID"""
-  node(
-    """The ID of an object"""
-    id: ID!
-  ): Node
+	"""
+	Fetches an object given its ID
+	"""
+	node(
+		"""
+		The ID of an object
+		"""
+		id: ID!
+	): Node
 }
 
 type Review implements Node {
-  id: ID!
-  upvotes: Int
-  title: String!
-  body: String!
+	id: ID!
+	upvotes: Int
+	title: String!
+	body: String!
 }
 
-"""A connection to a list of items."""
+"""
+A connection to a list of items.
+"""
 type ReviewConnection {
-  """Information to aid in pagination."""
-  pageInfo: PageInfo!
+	"""
+	Information to aid in pagination.
+	"""
+	pageInfo: PageInfo!
 
-  """A list of edges."""
-  edges: [ReviewEdge]!
-  aggregate: AggregateReview!
+	"""
+	A list of edges.
+	"""
+	edges: [ReviewEdge]!
+	aggregate: AggregateReview!
 }
 
 input ReviewCreateInput {
-  id: ID
-  upvotes: Int
-  title: String!
-  body: String!
+	id: ID
+	upvotes: Int
+	title: String!
+	body: String!
 }
 
-"""An edge in a connection."""
+"""
+An edge in a connection.
+"""
 type ReviewEdge {
-  """The item at the end of the edge."""
-  node: Review!
+	"""
+	The item at the end of the edge.
+	"""
+	node: Review!
 
-  """A cursor for use in pagination."""
-  cursor: String!
+	"""
+	A cursor for use in pagination.
+	"""
+	cursor: String!
 }
 
 enum ReviewOrderByInput {
-  id_ASC
-  id_DESC
-  upvotes_ASC
-  upvotes_DESC
-  title_ASC
-  title_DESC
-  body_ASC
-  body_DESC
+	id_ASC
+	id_DESC
+	upvotes_ASC
+	upvotes_DESC
+	title_ASC
+	title_DESC
+	body_ASC
+	body_DESC
 }
 
 type ReviewPreviousValues {
-  id: ID!
-  upvotes: Int
-  title: String!
-  body: String!
+	id: ID!
+	upvotes: Int
+	title: String!
+	body: String!
 }
 
 type ReviewSubscriptionPayload {
-  mutation: MutationType!
-  node: Review
-  updatedFields: [String!]
-  previousValues: ReviewPreviousValues
+	mutation: MutationType!
+	node: Review
+	updatedFields: [String!]
+	previousValues: ReviewPreviousValues
 }
 
 input ReviewSubscriptionWhereInput {
-  """Logical AND on all given filters."""
-  AND: [ReviewSubscriptionWhereInput!]
+	"""
+	Logical AND on all given filters.
+	"""
+	AND: [ReviewSubscriptionWhereInput!]
 
-  """Logical OR on all given filters."""
-  OR: [ReviewSubscriptionWhereInput!]
+	"""
+	Logical OR on all given filters.
+	"""
+	OR: [ReviewSubscriptionWhereInput!]
 
-  """Logical NOT on all given filters combined by AND."""
-  NOT: [ReviewSubscriptionWhereInput!]
+	"""
+	Logical NOT on all given filters combined by AND.
+	"""
+	NOT: [ReviewSubscriptionWhereInput!]
 
-  """The subscription event gets dispatched when it's listed in mutation_in"""
-  mutation_in: [MutationType!]
+	"""
+	The subscription event gets dispatched when it's listed in mutation_in
+	"""
+	mutation_in: [MutationType!]
 
-  """
-  The subscription event gets only dispatched when one of the updated fields names is included in this list
-  """
-  updatedFields_contains: String
+	"""
+	The subscription event gets only dispatched when one of the updated fields names is included in this list
+	"""
+	updatedFields_contains: String
 
-  """
-  The subscription event gets only dispatched when all of the field names included in this list have been updated
-  """
-  updatedFields_contains_every: [String!]
+	"""
+	The subscription event gets only dispatched when all of the field names included in this list have been updated
+	"""
+	updatedFields_contains_every: [String!]
 
-  """
-  The subscription event gets only dispatched when some of the field names included in this list have been updated
-  """
-  updatedFields_contains_some: [String!]
-  node: ReviewWhereInput
+	"""
+	The subscription event gets only dispatched when some of the field names included in this list have been updated
+	"""
+	updatedFields_contains_some: [String!]
+	node: ReviewWhereInput
 }
 
 input ReviewUpdateInput {
-  upvotes: Int
-  title: String
-  body: String
+	upvotes: Int
+	title: String
+	body: String
 }
 
 input ReviewUpdateManyMutationInput {
-  upvotes: Int
-  title: String
-  body: String
+	upvotes: Int
+	title: String
+	body: String
 }
 
 input ReviewWhereInput {
-  """Logical AND on all given filters."""
-  AND: [ReviewWhereInput!]
+	"""
+	Logical AND on all given filters.
+	"""
+	AND: [ReviewWhereInput!]
 
-  """Logical OR on all given filters."""
-  OR: [ReviewWhereInput!]
+	"""
+	Logical OR on all given filters.
+	"""
+	OR: [ReviewWhereInput!]
 
-  """Logical NOT on all given filters combined by AND."""
-  NOT: [ReviewWhereInput!]
-  id: ID
+	"""
+	Logical NOT on all given filters combined by AND.
+	"""
+	NOT: [ReviewWhereInput!]
+	id: ID
 
-  """All values that are not equal to given value."""
-  id_not: ID
+	"""
+	All values that are not equal to given value.
+	"""
+	id_not: ID
 
-  """All values that are contained in given list."""
-  id_in: [ID!]
+	"""
+	All values that are contained in given list.
+	"""
+	id_in: [ID!]
 
-  """All values that are not contained in given list."""
-  id_not_in: [ID!]
+	"""
+	All values that are not contained in given list.
+	"""
+	id_not_in: [ID!]
 
-  """All values less than the given value."""
-  id_lt: ID
+	"""
+	All values less than the given value.
+	"""
+	id_lt: ID
 
-  """All values less than or equal the given value."""
-  id_lte: ID
+	"""
+	All values less than or equal the given value.
+	"""
+	id_lte: ID
 
-  """All values greater than the given value."""
-  id_gt: ID
+	"""
+	All values greater than the given value.
+	"""
+	id_gt: ID
 
-  """All values greater than or equal the given value."""
-  id_gte: ID
+	"""
+	All values greater than or equal the given value.
+	"""
+	id_gte: ID
 
-  """All values containing the given string."""
-  id_contains: ID
+	"""
+	All values containing the given string.
+	"""
+	id_contains: ID
 
-  """All values not containing the given string."""
-  id_not_contains: ID
+	"""
+	All values not containing the given string.
+	"""
+	id_not_contains: ID
 
-  """All values starting with the given string."""
-  id_starts_with: ID
+	"""
+	All values starting with the given string.
+	"""
+	id_starts_with: ID
 
-  """All values not starting with the given string."""
-  id_not_starts_with: ID
+	"""
+	All values not starting with the given string.
+	"""
+	id_not_starts_with: ID
 
-  """All values ending with the given string."""
-  id_ends_with: ID
+	"""
+	All values ending with the given string.
+	"""
+	id_ends_with: ID
 
-  """All values not ending with the given string."""
-  id_not_ends_with: ID
-  upvotes: Int
+	"""
+	All values not ending with the given string.
+	"""
+	id_not_ends_with: ID
+	upvotes: Int
 
-  """All values that are not equal to given value."""
-  upvotes_not: Int
+	"""
+	All values that are not equal to given value.
+	"""
+	upvotes_not: Int
 
-  """All values that are contained in given list."""
-  upvotes_in: [Int!]
+	"""
+	All values that are contained in given list.
+	"""
+	upvotes_in: [Int!]
 
-  """All values that are not contained in given list."""
-  upvotes_not_in: [Int!]
+	"""
+	All values that are not contained in given list.
+	"""
+	upvotes_not_in: [Int!]
 
-  """All values less than the given value."""
-  upvotes_lt: Int
+	"""
+	All values less than the given value.
+	"""
+	upvotes_lt: Int
 
-  """All values less than or equal the given value."""
-  upvotes_lte: Int
+	"""
+	All values less than or equal the given value.
+	"""
+	upvotes_lte: Int
 
-  """All values greater than the given value."""
-  upvotes_gt: Int
+	"""
+	All values greater than the given value.
+	"""
+	upvotes_gt: Int
 
-  """All values greater than or equal the given value."""
-  upvotes_gte: Int
-  title: String
+	"""
+	All values greater than or equal the given value.
+	"""
+	upvotes_gte: Int
+	title: String
 
-  """All values that are not equal to given value."""
-  title_not: String
+	"""
+	All values that are not equal to given value.
+	"""
+	title_not: String
 
-  """All values that are contained in given list."""
-  title_in: [String!]
+	"""
+	All values that are contained in given list.
+	"""
+	title_in: [String!]
 
-  """All values that are not contained in given list."""
-  title_not_in: [String!]
+	"""
+	All values that are not contained in given list.
+	"""
+	title_not_in: [String!]
 
-  """All values less than the given value."""
-  title_lt: String
+	"""
+	All values less than the given value.
+	"""
+	title_lt: String
 
-  """All values less than or equal the given value."""
-  title_lte: String
+	"""
+	All values less than or equal the given value.
+	"""
+	title_lte: String
 
-  """All values greater than the given value."""
-  title_gt: String
+	"""
+	All values greater than the given value.
+	"""
+	title_gt: String
 
-  """All values greater than or equal the given value."""
-  title_gte: String
+	"""
+	All values greater than or equal the given value.
+	"""
+	title_gte: String
 
-  """All values containing the given string."""
-  title_contains: String
+	"""
+	All values containing the given string.
+	"""
+	title_contains: String
 
-  """All values not containing the given string."""
-  title_not_contains: String
+	"""
+	All values not containing the given string.
+	"""
+	title_not_contains: String
 
-  """All values starting with the given string."""
-  title_starts_with: String
+	"""
+	All values starting with the given string.
+	"""
+	title_starts_with: String
 
-  """All values not starting with the given string."""
-  title_not_starts_with: String
+	"""
+	All values not starting with the given string.
+	"""
+	title_not_starts_with: String
 
-  """All values ending with the given string."""
-  title_ends_with: String
+	"""
+	All values ending with the given string.
+	"""
+	title_ends_with: String
 
-  """All values not ending with the given string."""
-  title_not_ends_with: String
-  body: String
+	"""
+	All values not ending with the given string.
+	"""
+	title_not_ends_with: String
+	body: String
 
-  """All values that are not equal to given value."""
-  body_not: String
+	"""
+	All values that are not equal to given value.
+	"""
+	body_not: String
 
-  """All values that are contained in given list."""
-  body_in: [String!]
+	"""
+	All values that are contained in given list.
+	"""
+	body_in: [String!]
 
-  """All values that are not contained in given list."""
-  body_not_in: [String!]
+	"""
+	All values that are not contained in given list.
+	"""
+	body_not_in: [String!]
 
-  """All values less than the given value."""
-  body_lt: String
+	"""
+	All values less than the given value.
+	"""
+	body_lt: String
 
-  """All values less than or equal the given value."""
-  body_lte: String
+	"""
+	All values less than or equal the given value.
+	"""
+	body_lte: String
 
-  """All values greater than the given value."""
-  body_gt: String
+	"""
+	All values greater than the given value.
+	"""
+	body_gt: String
 
-  """All values greater than or equal the given value."""
-  body_gte: String
+	"""
+	All values greater than or equal the given value.
+	"""
+	body_gte: String
 
-  """All values containing the given string."""
-  body_contains: String
+	"""
+	All values containing the given string.
+	"""
+	body_contains: String
 
-  """All values not containing the given string."""
-  body_not_contains: String
+	"""
+	All values not containing the given string.
+	"""
+	body_not_contains: String
 
-  """All values starting with the given string."""
-  body_starts_with: String
+	"""
+	All values starting with the given string.
+	"""
+	body_starts_with: String
 
-  """All values not starting with the given string."""
-  body_not_starts_with: String
+	"""
+	All values not starting with the given string.
+	"""
+	body_not_starts_with: String
 
-  """All values ending with the given string."""
-  body_ends_with: String
+	"""
+	All values ending with the given string.
+	"""
+	body_ends_with: String
 
-  """All values not ending with the given string."""
-  body_not_ends_with: String
+	"""
+	All values not ending with the given string.
+	"""
+	body_not_ends_with: String
 }
 
 input ReviewWhereUniqueInput {
-  id: ID
+	id: ID
 }
 
 type Subscription {
-  user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
-  review(where: ReviewSubscriptionWhereInput): ReviewSubscriptionPayload
-  comment(where: CommentSubscriptionWhereInput): CommentSubscriptionPayload
+	user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
+	review(where: ReviewSubscriptionWhereInput): ReviewSubscriptionPayload
+	comment(where: CommentSubscriptionWhereInput): CommentSubscriptionPayload
 }
 
 type User implements Node {
-  id: ID!
-  name: String!
-  email: String!
+	id: ID!
+	name: String!
+	email: String!
 }
 
-"""A connection to a list of items."""
+"""
+A connection to a list of items.
+"""
 type UserConnection {
-  """Information to aid in pagination."""
-  pageInfo: PageInfo!
+	"""
+	Information to aid in pagination.
+	"""
+	pageInfo: PageInfo!
 
-  """A list of edges."""
-  edges: [UserEdge]!
-  aggregate: AggregateUser!
+	"""
+	A list of edges.
+	"""
+	edges: [UserEdge]!
+	aggregate: AggregateUser!
 }
 
 input UserCreateInput {
-  id: ID
-  name: String!
-  email: String!
+	id: ID
+	name: String!
+	email: String!
 }
 
-"""An edge in a connection."""
+"""
+An edge in a connection.
+"""
 type UserEdge {
-  """The item at the end of the edge."""
-  node: User!
+	"""
+	The item at the end of the edge.
+	"""
+	node: User!
 
-  """A cursor for use in pagination."""
-  cursor: String!
+	"""
+	A cursor for use in pagination.
+	"""
+	cursor: String!
 }
 
 enum UserOrderByInput {
-  id_ASC
-  id_DESC
-  name_ASC
-  name_DESC
-  email_ASC
-  email_DESC
+	id_ASC
+	id_DESC
+	name_ASC
+	name_DESC
+	email_ASC
+	email_DESC
 }
 
 type UserPreviousValues {
-  id: ID!
-  name: String!
-  email: String!
+	id: ID!
+	name: String!
+	email: String!
 }
 
 type UserSubscriptionPayload {
-  mutation: MutationType!
-  node: User
-  updatedFields: [String!]
-  previousValues: UserPreviousValues
+	mutation: MutationType!
+	node: User
+	updatedFields: [String!]
+	previousValues: UserPreviousValues
 }
 
 input UserSubscriptionWhereInput {
-  """Logical AND on all given filters."""
-  AND: [UserSubscriptionWhereInput!]
+	"""
+	Logical AND on all given filters.
+	"""
+	AND: [UserSubscriptionWhereInput!]
 
-  """Logical OR on all given filters."""
-  OR: [UserSubscriptionWhereInput!]
+	"""
+	Logical OR on all given filters.
+	"""
+	OR: [UserSubscriptionWhereInput!]
 
-  """Logical NOT on all given filters combined by AND."""
-  NOT: [UserSubscriptionWhereInput!]
+	"""
+	Logical NOT on all given filters combined by AND.
+	"""
+	NOT: [UserSubscriptionWhereInput!]
 
-  """The subscription event gets dispatched when it's listed in mutation_in"""
-  mutation_in: [MutationType!]
+	"""
+	The subscription event gets dispatched when it's listed in mutation_in
+	"""
+	mutation_in: [MutationType!]
 
-  """
-  The subscription event gets only dispatched when one of the updated fields names is included in this list
-  """
-  updatedFields_contains: String
+	"""
+	The subscription event gets only dispatched when one of the updated fields names is included in this list
+	"""
+	updatedFields_contains: String
 
-  """
-  The subscription event gets only dispatched when all of the field names included in this list have been updated
-  """
-  updatedFields_contains_every: [String!]
+	"""
+	The subscription event gets only dispatched when all of the field names included in this list have been updated
+	"""
+	updatedFields_contains_every: [String!]
 
-  """
-  The subscription event gets only dispatched when some of the field names included in this list have been updated
-  """
-  updatedFields_contains_some: [String!]
-  node: UserWhereInput
+	"""
+	The subscription event gets only dispatched when some of the field names included in this list have been updated
+	"""
+	updatedFields_contains_some: [String!]
+	node: UserWhereInput
 }
 
 input UserUpdateInput {
-  name: String
-  email: String
+	name: String
+	email: String
 }
 
 input UserUpdateManyMutationInput {
-  name: String
-  email: String
+	name: String
+	email: String
 }
 
 input UserWhereInput {
-  """Logical AND on all given filters."""
-  AND: [UserWhereInput!]
+	"""
+	Logical AND on all given filters.
+	"""
+	AND: [UserWhereInput!]
 
-  """Logical OR on all given filters."""
-  OR: [UserWhereInput!]
+	"""
+	Logical OR on all given filters.
+	"""
+	OR: [UserWhereInput!]
 
-  """Logical NOT on all given filters combined by AND."""
-  NOT: [UserWhereInput!]
-  id: ID
+	"""
+	Logical NOT on all given filters combined by AND.
+	"""
+	NOT: [UserWhereInput!]
+	id: ID
 
-  """All values that are not equal to given value."""
-  id_not: ID
+	"""
+	All values that are not equal to given value.
+	"""
+	id_not: ID
 
-  """All values that are contained in given list."""
-  id_in: [ID!]
+	"""
+	All values that are contained in given list.
+	"""
+	id_in: [ID!]
 
-  """All values that are not contained in given list."""
-  id_not_in: [ID!]
+	"""
+	All values that are not contained in given list.
+	"""
+	id_not_in: [ID!]
 
-  """All values less than the given value."""
-  id_lt: ID
+	"""
+	All values less than the given value.
+	"""
+	id_lt: ID
 
-  """All values less than or equal the given value."""
-  id_lte: ID
+	"""
+	All values less than or equal the given value.
+	"""
+	id_lte: ID
 
-  """All values greater than the given value."""
-  id_gt: ID
+	"""
+	All values greater than the given value.
+	"""
+	id_gt: ID
 
-  """All values greater than or equal the given value."""
-  id_gte: ID
+	"""
+	All values greater than or equal the given value.
+	"""
+	id_gte: ID
 
-  """All values containing the given string."""
-  id_contains: ID
+	"""
+	All values containing the given string.
+	"""
+	id_contains: ID
 
-  """All values not containing the given string."""
-  id_not_contains: ID
+	"""
+	All values not containing the given string.
+	"""
+	id_not_contains: ID
 
-  """All values starting with the given string."""
-  id_starts_with: ID
+	"""
+	All values starting with the given string.
+	"""
+	id_starts_with: ID
 
-  """All values not starting with the given string."""
-  id_not_starts_with: ID
+	"""
+	All values not starting with the given string.
+	"""
+	id_not_starts_with: ID
 
-  """All values ending with the given string."""
-  id_ends_with: ID
+	"""
+	All values ending with the given string.
+	"""
+	id_ends_with: ID
 
-  """All values not ending with the given string."""
-  id_not_ends_with: ID
-  name: String
+	"""
+	All values not ending with the given string.
+	"""
+	id_not_ends_with: ID
+	name: String
 
-  """All values that are not equal to given value."""
-  name_not: String
+	"""
+	All values that are not equal to given value.
+	"""
+	name_not: String
 
-  """All values that are contained in given list."""
-  name_in: [String!]
+	"""
+	All values that are contained in given list.
+	"""
+	name_in: [String!]
 
-  """All values that are not contained in given list."""
-  name_not_in: [String!]
+	"""
+	All values that are not contained in given list.
+	"""
+	name_not_in: [String!]
 
-  """All values less than the given value."""
-  name_lt: String
+	"""
+	All values less than the given value.
+	"""
+	name_lt: String
 
-  """All values less than or equal the given value."""
-  name_lte: String
+	"""
+	All values less than or equal the given value.
+	"""
+	name_lte: String
 
-  """All values greater than the given value."""
-  name_gt: String
+	"""
+	All values greater than the given value.
+	"""
+	name_gt: String
 
-  """All values greater than or equal the given value."""
-  name_gte: String
+	"""
+	All values greater than or equal the given value.
+	"""
+	name_gte: String
 
-  """All values containing the given string."""
-  name_contains: String
+	"""
+	All values containing the given string.
+	"""
+	name_contains: String
 
-  """All values not containing the given string."""
-  name_not_contains: String
+	"""
+	All values not containing the given string.
+	"""
+	name_not_contains: String
 
-  """All values starting with the given string."""
-  name_starts_with: String
+	"""
+	All values starting with the given string.
+	"""
+	name_starts_with: String
 
-  """All values not starting with the given string."""
-  name_not_starts_with: String
+	"""
+	All values not starting with the given string.
+	"""
+	name_not_starts_with: String
 
-  """All values ending with the given string."""
-  name_ends_with: String
+	"""
+	All values ending with the given string.
+	"""
+	name_ends_with: String
 
-  """All values not ending with the given string."""
-  name_not_ends_with: String
-  email: String
+	"""
+	All values not ending with the given string.
+	"""
+	name_not_ends_with: String
+	email: String
 
-  """All values that are not equal to given value."""
-  email_not: String
+	"""
+	All values that are not equal to given value.
+	"""
+	email_not: String
 
-  """All values that are contained in given list."""
-  email_in: [String!]
+	"""
+	All values that are contained in given list.
+	"""
+	email_in: [String!]
 
-  """All values that are not contained in given list."""
-  email_not_in: [String!]
+	"""
+	All values that are not contained in given list.
+	"""
+	email_not_in: [String!]
 
-  """All values less than the given value."""
-  email_lt: String
+	"""
+	All values less than the given value.
+	"""
+	email_lt: String
 
-  """All values less than or equal the given value."""
-  email_lte: String
+	"""
+	All values less than or equal the given value.
+	"""
+	email_lte: String
 
-  """All values greater than the given value."""
-  email_gt: String
+	"""
+	All values greater than the given value.
+	"""
+	email_gt: String
 
-  """All values greater than or equal the given value."""
-  email_gte: String
+	"""
+	All values greater than or equal the given value.
+	"""
+	email_gte: String
 
-  """All values containing the given string."""
-  email_contains: String
+	"""
+	All values containing the given string.
+	"""
+	email_contains: String
 
-  """All values not containing the given string."""
-  email_not_contains: String
+	"""
+	All values not containing the given string.
+	"""
+	email_not_contains: String
 
-  """All values starting with the given string."""
-  email_starts_with: String
+	"""
+	All values starting with the given string.
+	"""
+	email_starts_with: String
 
-  """All values not starting with the given string."""
-  email_not_starts_with: String
+	"""
+	All values not starting with the given string.
+	"""
+	email_not_starts_with: String
 
-  """All values ending with the given string."""
-  email_ends_with: String
+	"""
+	All values ending with the given string.
+	"""
+	email_ends_with: String
 
-  """All values not ending with the given string."""
-  email_not_ends_with: String
+	"""
+	All values not ending with the given string.
+	"""
+	email_not_ends_with: String
 }
 
 input UserWhereUniqueInput {
-  id: ID
+	id: ID
 }
