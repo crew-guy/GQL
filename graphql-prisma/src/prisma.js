@@ -26,8 +26,8 @@ prisma.query.comments(null, '{ id title body author{ id name} }')
 prisma.mutation.createComment(
   {data:{
     id:6,
-    title:"The noodles are gold af",
-    body:"Bole toh maza hi aa gaya bro",
+    title:"The noodles are really good",
+    body:"This dish is a symphony of flavours",
     author:{
       connect:{
         id:5
