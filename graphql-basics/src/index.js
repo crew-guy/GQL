@@ -27,4 +27,4 @@ const server = new GraphQLServer({
     }
 })
 
-server.start(()=>console.log('Taaza khaana ready hai!'))
+server.start(()=>console.log('The server has started !'))
