@@ -8,8 +8,16 @@ const prisma = new Prisma({
 
 
 prisma.query.users(null,'{ id name reviews {id title } }')
-    .then(data=> console.log(data))
-    .catch(err => console.log(err.message))
+  .then(data =>
+  {
+    console.log("data is next");
+    console.log(data)
+  })
+  .catch(err =>
+  {
+    console.log("error is next");
+    console.log(err.message)
+  })
 
 prisma.query.comments(null, '{ id title body author{ id name} }')
     .then(data=> console.log(data))
